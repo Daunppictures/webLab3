@@ -1,1 +1,3 @@
-# webLab3
+# Vanilla JS Contacts app 
+
+![](contacts-video.gif)
