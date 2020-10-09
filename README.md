@@ -1,3 +1,3 @@
 # Vanilla JS Contacts app 
 
-![](contacts-video.gif)
+![](readme-video.gif)
