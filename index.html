@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- ico -->
     <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon">
@@ -33,28 +32,33 @@
                             Create
                         </div>
 
-                        <div class="create-inputs">
+                        <div class="create-inputs between">
 
                             <!-- Input -->
                             <div class="create-input-wrapper">
-                                <input type="text" class="input" required="required">
+                                <input type="hidden" id="saveindex">
+                                <input id="firstNameInput" type="text" class="input" required="required">
                                 <span class="input-text">First name</span>
                             </div>
 
                             <!-- Input -->
                             <div class="create-input-wrapper">
-                                <input type="text" class="input" required="required">
+                                <input id="lastNameInput" type="text" class="input" required="required">
                                 <span class="input-text">Last name</span>
                             </div>
 
                             <!-- Input -->
                             <div class="create-input-wrapper">
-                                <input type="text" class="input" required="required">
+                                <input id="number" type="text" class="input" required="required">
                                 <span class="input-text">Phone number</span>
                             </div>
 
-                            <button class="create-button">
+                            <button id="btnCreateContact" class="create-button">
                                 Create
+                            </button>
+
+                            <button id="btnSaveContact" class="create-button" style="display: none">
+                                Save
                             </button>
 
                         </div>
@@ -91,119 +95,7 @@
                     </div>
                 </div>
                 <ul id="contacts" class="main-card-body">
-                    <li class="main-card-item">
-                        <a href="#">
-                            <div class="card-id">
-                                1
-                            </div>
-                            <div class="card-first-name">
-                                Anton
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-last-name">
-                                Solodovnikov
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-phone-number">
-                                +380 (66) 567 35 87
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="main-card-item">
-                        <a href="#">
-                            <div class="card-id">
-                                2
-                            </div>
-                            <div class="card-first-name">
-                                Ivan
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-last-name">
-                                Homov
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-phone-number">
-                                +380 (99) 758 55 87
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="main-card-item">
-                        <a href="#">
-                            <div class="card-id">
-                                3
-                            </div>
-                            <div class="card-first-name">
-                                Marko
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-last-name">
-                                Topolevsky
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-phone-number">
-                                +380 (66) 891 55 44
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="main-card-item">
-                        <a href="#">
-                            <div class="card-id">
-                                4
-                            </div>
-                            <div class="card-first-name">
-                                Masha
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-last-name">
-                                Chaus
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-phone-number">
-                                +380 (66) 644 85 17
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="main-card-item">
-                        <a href="#">
-                            <div class="card-id">
-                                5
-                            </div>
-                            <div class="card-first-name">
-                                Diana
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-last-name">
-                                Vorobiova
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-phone-number">
-                                +380 (66) 458 35 90
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="main-card-item">
-                        <a href="#">
-                            <div class="card-id">
-                                6
-                            </div>
-                            <div class="card-first-name">
-                                Dima
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-last-name">
-                                Ivanov
-                            </div>
-                            <span class="card-line"></span>
-                            <div class="card-phone-number">
-                                +380 (66) 456 35 77
-                            </div>
-                        </a>
-                    </li>
+                    
 
                 </ul>
             </div>

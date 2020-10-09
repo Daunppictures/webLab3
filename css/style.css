@@ -1,7 +1,12 @@
 /* Basic */
 
+html, button {
+    font-family: 'Rubik', 'Arial', sans-serif;
+}
+
 * {
     box-sizing: border-box;
+    
 }
 
 body {
@@ -9,10 +14,11 @@ body {
     color: #3D372C;
 }
 
+
 /* Container */
 
 .container {
-    max-width: 950px;
+    max-width: 1050px;
     margin: 0 auto;
     padding: 50px 0;
 }
@@ -22,7 +28,7 @@ body {
 .main-page {
     height: 100vh;
     background: #E5E5E5;
-    font-family: 'Rubik', sans-serif;
+    
 }
 
 .main-card {
@@ -55,7 +61,8 @@ body {
     flex-direction: column;
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.15),
+    -6px -6px 12px rgb(255, 255, 255);
     padding: 20px;
     position: relative;
     margin: 30px 0 0 0;
@@ -73,6 +80,10 @@ body {
     width: 100%;
     display: flex;
     flex-direction: row;
+}
+
+.between {
+    justify-content: space-between;
 }
 
 .create-button {
@@ -112,6 +123,10 @@ body {
     padding-left: 13px;
 }
 
+.input.error-input {
+    border-color: rgb(230, 67, 67);
+}
+
 .input-text {
     position: absolute;
     top: 50%;
@@ -121,6 +136,7 @@ body {
     pointer-events: none;
     color: #7E846B;
     font-size: 14px;
+    border-radius: 5px;
 }
 
 .input:focus+.input-text, .input:valid+.input-text {
@@ -164,9 +180,9 @@ select {
 
 .filter {
     overflow: hidden;
-    border-radius: 9px;
     position: relative;
     z-index: 1;
+    background: rgba(0, 0, 0, 0);
     padding: 0 30px 0 20px;
 }
 
@@ -211,7 +227,8 @@ option {
 .main-card-item a {
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15),
+    -5px -5px 8px #fff;
     border-radius: 14px;
     margin: 20px 0 0 0;
     display: flex;
@@ -221,6 +238,12 @@ option {
     padding: 8px;
     text-decoration: none;
     color: #3D372C;
+}
+
+.card-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .card-id {
@@ -248,9 +271,46 @@ option {
 .card-line {
     height: 35px;
     width: 1px;
-    margin: 0 35px;
+    margin: 0 25px;
     border-radius: 50%;
     background: rgba(126, 132, 107, .8);
+}
+
+.card-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-btn {
+    border: 1.5px solid #646E78;
+    outline: none;
+    color: #646E78;
+    background: none;
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 9px;
+    font-size: 12px;
+    margin-left: 15px;
+    transition: all .2s ease-in-out;
+}
+
+.card-btn:hover {
+    background: #646E78;
+    color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.card-btn:last-child {
+    border: none;
+    background: #da4a48;
+    color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.card-btn:last-child:hover {
+    background: #c24341;
+    color: #fff;
+    transition: all .2s ease-in-out;
 }
 
 #contacts::-webkit-scrollbar-track {
