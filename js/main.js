@@ -1,11 +1,14 @@
 showContact();
 
+
 // Search
 const filterInput = document.getElementById('filterInput');
 // CRUD
 const firstNameInput = document.getElementById('firstNameInput');
 const lastNameInput = document.getElementById('lastNameInput');
 const btnCreateContact = document.getElementById('btnCreateContact');
+const sortFilter = document.getElementById('sortFilter');
+
 
 btnCreateContact.addEventListener('click', () => {
     firstNameInputValue = firstNameInput.value;
@@ -31,6 +34,9 @@ btnCreateContact.addEventListener('click', () => {
 
     showContact();
 });
+
+
+
 
 function showContact() {
     let contact = localStorage.getItem('localContact');
@@ -126,10 +132,35 @@ function deleteContact(index) {
     showContact();
 }
 
+function sortList() {
+    let contact = localStorage.getItem('localContact');
+    let contactsList = JSON.parse(contact);
 
+    if(sortFilter.value = 'A - z') {
+        //sortByName(contactsList, 1, -1);
+        console.log(1);
+    }
+    
+}
 
+sortFilter.addEventListener('change', () => {
+    let contact = localStorage.getItem('localContact');
+    let contactsList = JSON.parse(contact);
 
+    if(sortFilter.value === 'ascending') {
+        sortByName(contactsList, 1, -1);
+    } else if (sortFilter.value === 'descending') {
+        sortByName(contactsList, -1, 1);
+    } 
 
+    
+    localStorage.setItem('localContact', JSON.stringify(contactsList));
+    showContact();
+});
+
+function sortByName(arr, number_1, number_2) {
+    arr.sort((a, b) => a.first_name > b.first_name ? number_1 : number_2);
+}
 
 
 

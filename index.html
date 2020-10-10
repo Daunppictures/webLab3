@@ -83,12 +83,13 @@
                             <!-- Sort List -->
                             <div class="select">
                                 <span class="input-text-select">Sort</span>
-                                <select name="filter" class="filter">
-                                    <option value="all">All</option>
-                                    <option value="all">A - z</option>
-                                    <option value="all">Z - a</option>
+                                <select id="sortFilter" name="filter" class="filter">
+                                    <option id="sortOption" value="ascending">A - z</option>
+                                    <option id="sortOption" value="descending">Z - a</option>
                                 </select>
                             </div>
+
+                            <button id="btnSort" class="btn-sort">Sort</button>
 
                         </div>
 
