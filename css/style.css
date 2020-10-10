@@ -63,7 +63,7 @@ body {
     border-radius: 18px;
     box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.15),
     -6px -6px 12px rgb(255, 255, 255);
-    padding: 20px;
+    padding: 25px 20px;
     position: relative;
     margin: 30px 0 0 0;
 }
@@ -127,6 +127,36 @@ body {
     border-color: rgb(230, 67, 67);
 }
 
+.input-check-icon {
+    width: 20px;
+    height: 20px;
+    background: url('../img/check-circle.svg');
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+}
+
+.input-error-icon {
+    width: 20px;
+    height: 20px;
+    background: url('../img/alert-circle.svg');
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+}
+.input-error-text {
+    position: absolute;
+    font-size: 13px;
+    color: rgb(230, 67, 67);
+    bottom: -17px;
+    left: 2px;
+    visibility: hidden;
+}
+
 .input-text {
     position: absolute;
     top: 50%;
@@ -138,6 +168,37 @@ body {
     font-size: 14px;
     border-radius: 5px;
 }
+
+.check .input-text {
+    color: #83E256;
+}
+.error .input-text {
+    color: #E26756;
+}
+
+.check .input {
+    border-color: #83E256;
+}
+.error .input {
+    border-color: #E26756;
+}
+
+.check .input-check-icon {
+    visibility: visible;
+}
+.error .input-check-icon {
+    visibility: hidden;
+}
+
+.check .input-error-text {
+    visibility: hidden;
+}
+.error .input-error-text, .error .input-error-icon {
+    visibility: visible;
+}
+
+
+
 
 .input:focus+.input-text, .input:valid+.input-text {
     top: 0;

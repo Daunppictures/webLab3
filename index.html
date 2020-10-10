@@ -35,16 +35,22 @@
                         <div class="create-inputs between">
 
                             <!-- Input -->
-                            <div class="create-input-wrapper">
+                            <div id="firstInputWrapper" class="create-input-wrapper">
                                 <input type="hidden" id="saveindex">
                                 <input id="firstNameInput" type="text" class="input" required="required">
                                 <span class="input-text">First name</span>
+                                <span class="input-check-icon"></span>
+                                <span class="input-error-icon"></span>
+                                <span class="input-error-text">Field cannot be blank</span>
                             </div>
 
                             <!-- Input -->
-                            <div class="create-input-wrapper">
+                            <div id="lastInputWrapper" class="create-input-wrapper">
                                 <input id="lastNameInput" type="text" class="input" required="required">
                                 <span class="input-text">Last name</span>
+                                <span class="input-check-icon"></span>
+                                <span class="input-error-icon"></span>
+                                <span class="input-error-text">Field cannot be blank</span>
                             </div>
 
                             <!-- Input -->
@@ -88,8 +94,6 @@
                                     <option id="sortOption" value="descending">Z - a</option>
                                 </select>
                             </div>
-
-                            <button id="btnSort" class="btn-sort">Sort</button>
 
                         </div>
 

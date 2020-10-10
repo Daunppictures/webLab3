@@ -14,6 +14,9 @@ btnCreateContact.addEventListener('click', () => {
     firstNameInputValue = firstNameInput.value;
     lastNameInputValue = lastNameInput.value;
 
+    const inputWrapper = document.getElementsByClassName('.create-input-wrapper');
+    
+
     if (firstNameInputValue && lastNameInputValue != 0) {
         let contact = localStorage.getItem('localContact');
 
@@ -30,12 +33,33 @@ btnCreateContact.addEventListener('click', () => {
 
         contactsList.push(contactObj);
         localStorage.setItem('localContact', JSON.stringify(contactsList));
+        checkInput();
+    } else if (firstNameInputValue == 0) {
+        errorInput();
     }
 
+
     showContact();
+    clearInput();
 });
 
+function checkInput() {
+    const firstInputWrapper = document.getElementById('firstInputWrapper');
+    const lastInputWrapper = document.getElementById('lastInputWrapper');
 
+    firstInputWrapper.classList.remove('error');
+    lastInputWrapper.classList.remove('error');
+    firstInputWrapper.classList.add('check');
+    lastInputWrapper.classList.add('check');
+    
+}
+
+function errorInput() {
+    const firstInputWrapper = document.getElementById('firstInputWrapper');
+    const lastInputWrapper = document.getElementById('lastInputWrapper');
+    firstInputWrapper.classList.add('error');
+    lastInputWrapper.classList.add('error');
+}
 
 
 function showContact() {
@@ -122,6 +146,7 @@ btnSaveContact.addEventListener('click', () => {
 
 const clearInput = () => {
     firstNameInput.value = '';
+    lastNameInput.value = '';
 };
 
 function deleteContact(index) {
@@ -136,24 +161,24 @@ function sortList() {
     let contact = localStorage.getItem('localContact');
     let contactsList = JSON.parse(contact);
 
-    if(sortFilter.value = 'A - z') {
+    if (sortFilter.value = 'A - z') {
         //sortByName(contactsList, 1, -1);
         console.log(1);
     }
-    
+
 }
 
 sortFilter.addEventListener('change', () => {
     let contact = localStorage.getItem('localContact');
     let contactsList = JSON.parse(contact);
 
-    if(sortFilter.value === 'ascending') {
+    if (sortFilter.value === 'ascending') {
         sortByName(contactsList, 1, -1);
     } else if (sortFilter.value === 'descending') {
         sortByName(contactsList, -1, 1);
-    } 
+    }
 
-    
+
     localStorage.setItem('localContact', JSON.stringify(contactsList));
     showContact();
 });
