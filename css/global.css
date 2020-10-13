@@ -1,0 +1,50 @@
+html, button {
+    font-family: 'Rubik', 'Arial', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    color: #3D372C;
+    overflow: hidden;
+}
+
+/* Container */
+
+.container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+/* Main page */
+
+.main-page {
+    height: 100vh;
+    background: #E5E5E5;
+}
+
+.main-card {
+    width: 100%;
+    min-height: 400px;
+    height: 100%;
+    border-radius: 30px;
+    background: #F3F3F3;
+    padding: 20px 50px 40px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.main-card-title {
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.between {
+    justify-content: space-between;
+}

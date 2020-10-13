@@ -1,0 +1,16 @@
+.card-btn:hover {
+    background: #646E78;
+    color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.card-btn:last-child:hover {
+    background: #c24341;
+    color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.create-button:hover {
+    background: #4a5158;
+    transition: all .2s ease-in-out;
+}

@@ -1,6 +1,5 @@
 showContact();
 
-
 // Search
 const filterInput = document.getElementById('filterInput');
 // CRUD
@@ -11,11 +10,8 @@ const sortFilter = document.getElementById('sortFilter');
 
 
 btnCreateContact.addEventListener('click', () => {
-    firstNameInputValue = firstNameInput.value;
-    lastNameInputValue = lastNameInput.value;
-
-    const inputWrapper = document.getElementsByClassName('.create-input-wrapper');
-    
+    const firstNameInputValue = firstNameInput.value;
+    const lastNameInputValue = lastNameInput.value;
 
     if (firstNameInputValue && lastNameInputValue != 0) {
         let contact = localStorage.getItem('localContact');
@@ -33,6 +29,7 @@ btnCreateContact.addEventListener('click', () => {
 
         contactsList.push(contactObj);
         localStorage.setItem('localContact', JSON.stringify(contactsList));
+
         checkInput();
     } else if (firstNameInputValue == 0) {
         errorInput();
@@ -43,7 +40,7 @@ btnCreateContact.addEventListener('click', () => {
     clearInput();
 });
 
-function checkInput() {
+const checkInput =  () => {
     const firstInputWrapper = document.getElementById('firstInputWrapper');
     const lastInputWrapper = document.getElementById('lastInputWrapper');
 
@@ -51,16 +48,18 @@ function checkInput() {
     lastInputWrapper.classList.remove('error');
     firstInputWrapper.classList.add('check');
     lastInputWrapper.classList.add('check');
-    
-}
+};
 
-function errorInput() {
+const errorInput = () => {
     const firstInputWrapper = document.getElementById('firstInputWrapper');
     const lastInputWrapper = document.getElementById('lastInputWrapper');
+    
     firstInputWrapper.classList.add('error');
     lastInputWrapper.classList.add('error');
-}
+};
 
+
+// Render
 
 function showContact() {
     let contact = localStorage.getItem('localContact');
@@ -71,11 +70,11 @@ function showContact() {
         contactsList = JSON.parse(contact);
     }
 
-    let html = '';
+    let innerItem = '';
     const contactsHtmlWrapper = document.getElementById('contacts');
 
     contactsList.forEach((item, index) => {
-        html += `
+        innerItem += `
             <li class="main-card-item">
                 <a href="#">
                     <div class="card-info">
@@ -107,13 +106,16 @@ function showContact() {
             </li>
         `;
     });
-    contactsHtmlWrapper.innerHTML = html;
+    contactsHtmlWrapper.innerHTML = innerItem;
 }
 
+
+// Edit
+
 function editContact(index) {
-    let saveindex = document.getElementById('saveindex');
-    let btnCreateContact = document.getElementById('btnCreateContact');
-    let btnSaveContact = document.getElementById('btnSaveContact');
+    const saveindex = document.getElementById('saveindex');
+    const btnCreateContact = document.getElementById('btnCreateContact');
+    const btnSaveContact = document.getElementById('btnSaveContact');
     let contact = localStorage.getItem('localContact');
     let contactsList = JSON.parse(contact);
     firstNameInput.value = contactsList[index].first_name;
@@ -144,10 +146,15 @@ btnSaveContact.addEventListener('click', () => {
     showContact();
 });
 
+
+
 const clearInput = () => {
     firstNameInput.value = '';
     lastNameInput.value = '';
 };
+
+
+// Delete
 
 function deleteContact(index) {
     let contact = localStorage.getItem('localContact');
@@ -157,16 +164,8 @@ function deleteContact(index) {
     showContact();
 }
 
-function sortList() {
-    let contact = localStorage.getItem('localContact');
-    let contactsList = JSON.parse(contact);
 
-    if (sortFilter.value = 'A - z') {
-        //sortByName(contactsList, 1, -1);
-        console.log(1);
-    }
-
-}
+// Filter
 
 sortFilter.addEventListener('change', () => {
     let contact = localStorage.getItem('localContact');
@@ -178,23 +177,21 @@ sortFilter.addEventListener('change', () => {
         sortByName(contactsList, -1, 1);
     }
 
+    function sortByName(arr, number_1, number_2) {
+        arr.sort((a, b) => a.first_name > b.first_name ? number_1 : number_2);
+    }
 
     localStorage.setItem('localContact', JSON.stringify(contactsList));
     showContact();
 });
 
-function sortByName(arr, number_1, number_2) {
-    arr.sort((a, b) => a.first_name > b.first_name ? number_1 : number_2);
-}
 
 
 
 
+// Search
 
-filterInput.addEventListener('keyup', filterNames);
-
-function filterNames() {
-    //console.log(filterInput.value);
+filterInput.addEventListener('keyup', () => {
     let filterValue = document.getElementById('filterInput').value.toUpperCase();
 
     let ul = document.getElementById('contacts');
@@ -216,4 +213,4 @@ function filterNames() {
             li[i].style.display = 'none';
         }
     }
-}
+});
