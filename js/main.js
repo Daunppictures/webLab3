@@ -165,7 +165,7 @@ function deleteContact(index) {
 }
 
 
-// Filter
+// Sort Filter
 
 sortFilter.addEventListener('change', () => {
     let contact = localStorage.getItem('localContact');

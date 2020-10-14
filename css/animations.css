@@ -14,3 +14,15 @@
     background: #4a5158;
     transition: all .2s ease-in-out;
 }
+
+
+/* Input animation */
+
+.input:focus+.input-text, .input:valid+.input-text {
+    top: 0;
+    color: #7E846B;
+    transition: all .3s ease-in-out;
+    padding: 3px;
+    background: #fff;
+    font-size: 16px;
+}
