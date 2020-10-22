@@ -7,27 +7,28 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 arr = [
-    {'name': 'Anton', 'age': 19},
+    {'first_name': 'Anton1', 'last_name': 'Solodovnikov1'},
+    {'first_name': 'Anton2', 'last_name': 'Solodovnikov2'},
+    {'first_name': 'Anton3', 'last_name': 'Solodovnikov3'},
+    {'first_name': 'Anton4', 'last_name': 'Solodovnikov4'},
 ]
 
 
 @app.route('/get', methods=['GET'])
 @cross_origin()
-def hello():
-    print(jsonify(arr))
+def get():
     return jsonify(arr)
 
 @app.route('/post', methods=['POST'])
 def post():
     data = request.get_json()
-    print(data)
     arr.append(data)
-    print(arr)
     return data
 
-@app.route('/delete', methods=['DELETE'])
-def delete():
-    return arr.pop(len(arr) - 1)
+@app.route('/delete/<id>', methods=['GET', 'DELETE'])
+def delete(id):
+    arr.pop(int(id))
+    return jsonify(arr)
 
 
 if __name__ == '__main__':

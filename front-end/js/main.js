@@ -1,4 +1,4 @@
-showContact();
+const url = "http://127.0.0.1:5000";
 
 // Search
 const filterInput = document.getElementById("filterInput");
@@ -8,6 +8,12 @@ const lastNameInput = document.getElementById("lastNameInput");
 const btnCreateContact = document.getElementById("btnCreateContact");
 const sortFilter = document.getElementById("sortFilter");
 
+//GET response
+fetch("http://127.0.0.1:5000/get")
+  .then((res) => res.json())
+  .then((data) => renderContacts(data));
+
+//showContact();
 btnCreateContact.addEventListener("click", () => {
   const firstNameInputValue = firstNameInput.value;
   const lastNameInputValue = lastNameInput.value;
@@ -58,19 +64,11 @@ const errorInput = () => {
 
 // Render
 
-function showContact() {
-  let contact = localStorage.getItem("localContact");
-
-  if (contact == null) {
-    contactsList = [];
-  } else {
-    contactsList = JSON.parse(contact);
-  }
-
-  let innerItem = "";
+async function renderContacts(contacts) {
+  innerItem = "";
   const contactsHtmlWrapper = document.getElementById("contacts");
 
-  contactsList.forEach((item, index) => {
+  contacts.forEach((item, index) => {
     innerItem += `
             <li class="main-card-item">
                 <a href="#">
@@ -90,7 +88,7 @@ function showContact() {
                             +380 (66) 891 55 44
                         </div>
                     </div>
-                    
+
                     <div class="card-button-wrapper">
                         <button id="btnEdit" onclick="editContact(${index})" type="button" class="card-btn">
                             Edit
@@ -103,8 +101,57 @@ function showContact() {
             </li>
         `;
   });
+
   contactsHtmlWrapper.innerHTML = innerItem;
 }
+
+// function showContact() {
+//   let contact = localStorage.getItem("localContact");
+
+//   if (contact == null) {
+//     contactsList = [];
+//   } else {
+//     contactsList = JSON.parse(contact);
+//   }
+
+//   let innerItem = "";
+//   const contactsHtmlWrapper = document.getElementById("contacts");
+
+//   contactsList.forEach((item, index) => {
+//     innerItem += `
+//             <li class="main-card-item">
+//                 <a href="#">
+//                     <div class="card-info">
+//                         <div class="card-id">
+//                             ${index + 1}
+//                         </div>
+//                         <div class="card-first-name">
+//                             ${item.first_name}
+//                         </div>
+//                         <span class="card-line"></span>
+//                         <div class="card-last-name">
+//                             ${item.last_name}
+//                         </div>
+//                         <span class="card-line"></span>
+//                         <div class="card-phone-number">
+//                             +380 (66) 891 55 44
+//                         </div>
+//                     </div>
+
+//                     <div class="card-button-wrapper">
+//                         <button id="btnEdit" onclick="editContact(${index})" type="button" class="card-btn">
+//                             Edit
+//                         </button>
+//                         <button id="btnDelete" onclick="deleteContact(${index})"  type="button" class="card-btn btn-delete">
+//                             Delete
+//                         </button>
+//                     </div>
+//                 </a>
+//             </li>
+//         `;
+//   });
+//   contactsHtmlWrapper.innerHTML = innerItem;
+// }
 
 // Edit
 
@@ -139,7 +186,7 @@ btnSaveContact.addEventListener("click", () => {
   localStorage.setItem("localContact", JSON.stringify(contactsList));
   clearInput();
 
-  showContact();
+  renderContacts();
 });
 
 const clearInput = () => {
@@ -149,12 +196,12 @@ const clearInput = () => {
 
 // Delete
 
-function deleteContact(index) {
-  let contact = localStorage.getItem("localContact");
-  let contactsList = JSON.parse(contact);
-  contactsList.splice(index, 1);
-  localStorage.setItem("localContact", JSON.stringify(contactsList));
-  showContact();
+async function deleteContact(index) {
+  fetch("http://127.0.0.1:5000/delete/" + index, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((data) => renderContacts(data));
 }
 
 // Filter
