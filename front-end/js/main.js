@@ -1,5 +1,3 @@
-const url = "http://127.0.0.1:5000";
-
 // Search
 const filterInput = document.getElementById("filterInput");
 // CRUD
@@ -86,9 +84,12 @@ async function renderContacts(contacts) {
                         </div>
                     </div>
 
-                    <div class="card-button-wrapper">
+                    <div id="buttons${index}" class="card-button-wrapper">
                         <button id="btnEdit" onclick="editContact(${index})" type="button" class="card-btn">
                             Edit
+                        </button>
+                        <button id="btnSaveContact" onclick="saveContact(${index})" type="button" class="card-btn save-btn" style="display: none">
+                            Save
                         </button>
                         <button id="btnDelete" onclick="deleteContact(${index})"  type="button" class="card-btn btn-delete">
                             Delete
@@ -152,38 +153,55 @@ async function renderContacts(contacts) {
 
 // Edit
 
-function editContact(index) {
+async function editContact(index) {
   const saveindex = document.getElementById("saveindex");
   const btnCreateContact = document.getElementById("btnCreateContact");
   const btnSaveContact = document.getElementById("btnSaveContact");
-  let contact = localStorage.getItem("localContact");
-  let contactsList = JSON.parse(contact);
-  firstNameInput.value = contactsList[index].first_name;
-  lastNameInput.value = contactsList[index].last_name;
+
+  let resonse = await fetch("http://127.0.0.1:5000/get");
+  contactList = await resonse.json();
+
+  firstNameInput.value = contactList[index].first_name;
+  lastNameInput.value = contactList[index].last_name;
 
   btnCreateContact.style.display = "none";
   btnSaveContact.style.display = "block";
 
-  saveindex.value = index;
+  console.log((saveindex.value = index));
 }
 
 let btnSaveContact = document.getElementById("btnSaveContact");
 
-btnSaveContact.addEventListener("click", () => {
-  let btnCreateContact = document.getElementById("btnCreateContact");
+btnSaveContact.addEventListener("click", async function () {
+  let resonse = await fetch("http://127.0.0.1:5000/get");
+  contactList = await resonse.json();
+  console.log(contactList);
 
-  let contact = localStorage.getItem("localContact");
-  let contactsList = JSON.parse(contact);
+  let btnCreateContact = document.getElementById("btnCreateContact");
+  const firstNameInputValue = firstNameInput.value;
+  const lastNameInputValue = lastNameInput.value;
 
   let saveindex = document.getElementById("saveindex").value;
-  contactsList[saveindex].first_name = firstNameInput.value;
-  contactsList[saveindex].last_name = lastNameInput.value;
+  console.log(saveindex);
+  contactList[saveindex].first_name = firstNameInput.value;
+  contactList[saveindex].last_name = lastNameInput.value;
   btnCreateContact.style.display = "block";
   btnSaveContact.style.display = "none";
-  localStorage.setItem("localContact", JSON.stringify(contactsList));
+
   clearInput();
 
-  renderContacts();
+  fetch("http://127.0.0.1:5000/put/" + saveindex, {
+    method: "PUT",
+    body: JSON.stringify({
+      first_name: firstNameInputValue,
+      last_name: lastNameInputValue,
+    }),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => renderContacts(data));
 });
 
 const clearInput = () => {
