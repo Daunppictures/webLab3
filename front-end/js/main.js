@@ -14,33 +14,30 @@ fetch("http://127.0.0.1:5000/get")
   .then((data) => renderContacts(data));
 
 //showContact();
-btnCreateContact.addEventListener("click", () => {
+btnCreateContact.addEventListener("click", async () => {
   const firstNameInputValue = firstNameInput.value;
   const lastNameInputValue = lastNameInput.value;
 
   if (firstNameInputValue && lastNameInputValue != 0) {
-    let contact = localStorage.getItem("localContact");
-
-    let contactObj = {
-      first_name: firstNameInputValue,
-      last_name: lastNameInputValue,
-    };
-
-    if (contact == null) {
-      contactsList = [];
-    } else {
-      contactsList = JSON.parse(contact);
-    }
-
-    contactsList.push(contactObj);
-    localStorage.setItem("localContact", JSON.stringify(contactsList));
-
+    fetch("http://127.0.0.1:5000/post", {
+      method: "POST",
+      body: JSON.stringify({
+        first_name: firstNameInputValue,
+        last_name: lastNameInputValue,
+      }),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((data) => renderContacts(data));
     checkInput();
   } else if (firstNameInputValue == 0) {
     errorInput();
   }
 
-  showContact();
   clearInput();
 });
 

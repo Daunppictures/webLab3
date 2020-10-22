@@ -7,10 +7,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 arr = [
-    {'first_name': 'Anton1', 'last_name': 'Solodovnikov1'},
-    {'first_name': 'Anton2', 'last_name': 'Solodovnikov2'},
-    {'first_name': 'Anton3', 'last_name': 'Solodovnikov3'},
-    {'first_name': 'Anton4', 'last_name': 'Solodovnikov4'},
+    
 ]
 
 
@@ -19,11 +16,11 @@ arr = [
 def get():
     return jsonify(arr)
 
-@app.route('/post', methods=['POST'])
+@app.route('/post', methods=['GET', 'POST'])
 def post():
     data = request.get_json()
     arr.append(data)
-    return data
+    return jsonify(arr)
 
 @app.route('/delete/<id>', methods=['GET', 'DELETE'])
 def delete(id):
